@@ -42,17 +42,6 @@ public class AppUserValidator : AbstractValidator<AppUser>
             .NotEmpty().WithMessage("Eğitim boş olamaz.")
             .Length(2, 50).WithMessage("Eğitim 2-50 karakter arasında olmalıdır.");
 
-        RuleFor(x => x.BirthDate)
-            .NotEmpty().WithMessage("Doğum tarihi boş olamaz.")
-            .LessThan(DateTime.Now).WithMessage("Geçersiz doğum tarihi.");
-
-        RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Parola boş olamaz.")
-            .Length(6, 100).WithMessage("Parola 6-100 karakter arasında olmalıdır.");
-
-        RuleFor(x => x.Role)
-            .NotEmpty().WithMessage("Rol boş olamaz.");
-
     }
 
     private bool BeAValidTCNo(string tcNo)

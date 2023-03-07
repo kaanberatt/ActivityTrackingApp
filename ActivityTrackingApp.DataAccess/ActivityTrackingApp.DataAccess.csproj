@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,9 +22,11 @@
   <ItemGroup>
     <Folder Include="Concrete\" />
     <Folder Include="Abstract\" />
+    <Folder Include="GenericRepository\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ActivityTrackingApp.Core\ActivityTrackingApp.Core.csproj" />
     <ProjectReference Include="..\ActivityTrackingApp.Entities\ActivityTrackingApp.Entities.csproj" />
   </ItemGroup>
 

@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -17,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ActivityTrackingApp.Business\ActivityTrackingApp.Business.csproj" />
+    <ProjectReference Include="..\ActivityTrackingApp.DataAccess\ActivityTrackingApp.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
