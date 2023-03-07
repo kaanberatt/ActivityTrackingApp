@@ -1,4 +1,4 @@
-namespace BungalowVip.Core.Utilities.Result;
+namespace ActivityTrackingApp.Core.Utilities.Result;
 public interface IResult
 {
 	bool Success { get; }

@@ -1,4 +1,4 @@
-namespace BungalowVip.Core.Utilities.Result;
+namespace ActivityTrackingApp.Core.Utilities.Result;
 public class ErrorDataResult<T> : DataResult<T>
 {
 	public ErrorDataResult(T data, string message)

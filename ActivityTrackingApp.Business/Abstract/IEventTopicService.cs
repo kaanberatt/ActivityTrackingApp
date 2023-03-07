@@ -1,5 +1,5 @@
 ﻿using ActivityTrackingApp.Entities.Concrete;
-using BungalowVip.Core.Utilities.Result;
+using ActivityTrackingApp.Core.Utilities.Result;
 
 namespace ActivityTrackingApp.Business.Abstract;
 public interface IEventTopicService

@@ -10,4 +10,9 @@
     <PackageReference Include="Autofac" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ActivityTrackingApp.Core\ActivityTrackingApp.Core.csproj" />
+    <ProjectReference Include="..\ActivityTrackingApp.Entities\ActivityTrackingApp.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

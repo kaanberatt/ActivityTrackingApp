@@ -2,7 +2,7 @@
 using BungalowVip.Core.Utilities.Result;
 
 namespace ActivityTrackingApp.Business.Abstract;
-public interface IUserActivities
+public interface IUserActivitiesService
 {
     Task<IDataResult<UserActivities>> AddAsync(UserActivities userActivities);
 }

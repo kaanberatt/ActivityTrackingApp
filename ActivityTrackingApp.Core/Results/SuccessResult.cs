@@ -1,4 +1,4 @@
-namespace BungalowVip.Core.Utilities.Result;
+namespace ActivityTrackingApp.Core.Utilities.Result;
 public class SuccessResult : Result
 {
 	public SuccessResult(string message)
