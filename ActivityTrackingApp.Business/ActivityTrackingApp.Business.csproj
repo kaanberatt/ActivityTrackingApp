@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ActivityTrackingApp.Core\ActivityTrackingApp.Core.csproj" />
+    <ProjectReference Include="..\ActivityTrackingApp.DataAccess\ActivityTrackingApp.DataAccess.csproj" />
     <ProjectReference Include="..\ActivityTrackingApp.Entities\ActivityTrackingApp.Entities.csproj" />
   </ItemGroup>
 

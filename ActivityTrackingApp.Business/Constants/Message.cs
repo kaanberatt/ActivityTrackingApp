@@ -16,6 +16,7 @@ public static class Messages
     private static string errorMessage = "An unexpected error occurred";
     private static string recordMessage = "No record";
     private static string noRecordMessage = "No record found";
+    private static string modelErrorMessage = "Model is not valid";
     public static string AddMessage { get { return addMessage; } set { addMessage = value; } }
     public static string DeleteMessage { get { return deleteMessage; } set { deleteMessage = value; } }
     public static string UpdateMessage { get { return updateMessage; } set { updateMessage = value; } }
@@ -30,4 +31,5 @@ public static class Messages
     public static string ErrorMessage { get { return errorMessage; } set { errorMessage = value; } }
     public static string RecordMessage { get { return recordMessage; } set { recordMessage = value; } }
     public static string NoRecordMessage { get { return noRecordMessage; } set { noRecordMessage = value; } }
+    public static string ModelErrorMessage { get { return modelErrorMessage; } set { modelErrorMessage = value; } }
 }

@@ -4,24 +4,35 @@ using ActivityTrackingApp.Core.Helper;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Core.Utilities.Result;
+using ActivityTrackingApp.Entities.Enums;
+using FluentValidation;
 
 namespace ActivityTrackingApp.Business.Concrete;
 
 public class AppUserManager : IAppUserService
 {
     private readonly IAppUserDAL _appUserDal;
+    private readonly IValidator<AppUser> _appUserValidator;
 
-    public AppUserManager(IAppUserDAL appUserDal)
+    public AppUserManager(IAppUserDAL appUserDal, IValidator<AppUser> appUserValidator)
     {
         _appUserDal = appUserDal;
+        _appUserValidator = appUserValidator;
     }
 
     public async Task<IDataResult<AppUser>> AddAsync(AppUser appUser)
     {
         try
         {
-            await _appUserDal.AddAsync(appUser);
-            return new SuccessDataResult<AppUser>(appUser, Messages.AddMessage);
+            appUser.IsActived = true;
+            appUser.Role = RoleEnums.User.ToString();
+            var control = _appUserValidator.Validate(appUser);
+            if (control.IsValid)
+            {
+                await _appUserDal.AddAsync(appUser);
+                return new SuccessDataResult<AppUser>(appUser, Messages.AddMessage);
+            }
+            return new ErrorDataResult<AppUser>(appUser, Messages.ErrorMessage);
         }
         catch (Exception ex)
         {
