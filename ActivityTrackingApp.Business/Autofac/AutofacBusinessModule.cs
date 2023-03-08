@@ -3,6 +3,8 @@ using ActivityTrackingApp.Business.Concrete;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.DataAccess.Concrete;
 using ActivityTrackingApp.Entities.Concrete;
+using ActivityTrackingApp.Entities.Dtos;
+using ActivityTrackingApp.Entities.DtosValidator;
 using ActivityTrackingApp.Entities.EntityValidator;
 using Autofac;
 using FluentValidation;
@@ -29,6 +31,7 @@ public class AutofacBusinessModule : Module
 
 
         builder.RegisterType<AppUserValidator>().As<IValidator<AppUser>>();
+        builder.RegisterType<AppUserDtoValidator>().As<IValidator<AppUserDto>>();
 
     }
 }
