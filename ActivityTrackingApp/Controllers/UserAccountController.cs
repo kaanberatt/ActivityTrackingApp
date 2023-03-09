@@ -39,7 +39,7 @@ public class UserAccountController : ControllerBase
             {
 
                 var appUserControl = await _appUserService.GetUserByEmailAsync(appUserDto.Email);
-                if (appUserControl.Success)
+                if (appUserControl.isSuccess)
                 {
                     return Ok("Email already in use.");
                 }
@@ -49,23 +49,23 @@ public class UserAccountController : ControllerBase
                 _mappedAppUser.PasswordSalt = passwordSalt;
 
                 var _appUser = await _appUserService.AddAsync(_mappedAppUser);
-                if (_appUser.Success)
+                if (_appUser.isSuccess)
                 {
                     return Ok (_appUser.Message);
                 }
             }
             else
             {
-                foreach (var item in control.Errors)
+                foreach (var failure in control.Errors)
                 {
-                    errorList.Add(item.ErrorMessage);   
+                    errorList.Add(failure.ErrorMessage);   
                 }
             }
             return Ok(errorList);
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
-            return Ok(ex.InnerException.Message);
+            return Ok(ex.Message);
         }
     }
     [HttpPost("")]
@@ -76,7 +76,7 @@ public class UserAccountController : ControllerBase
             if (ModelState.IsValid)
             {
                 var _userControl = await _appUserService.SignInAsync(signInDto.Email, signInDto.Password);
-                if (_userControl.Success)
+                if (_userControl.isSuccess)
                 {
                     var authClaims = new List<Claim>
                     {
@@ -93,8 +93,13 @@ public class UserAccountController : ControllerBase
                         expiration = token.ValidTo
                     });
                 }
+                else
+                {
+                    return Unauthorized(_userControl.Message);
+                }
             }
-            return Unauthorized();
+            var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.ErrorMessage));
+            return BadRequest(errors);
         }
         catch (Exception ex)
         {

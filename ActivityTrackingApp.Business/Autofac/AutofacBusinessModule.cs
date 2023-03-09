@@ -29,8 +29,26 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<EfEventDAL>().As<IEventDAL>();
         #endregion
 
+        #region EventTopic
+        builder.RegisterType<EventTopicManager>().As<IEventTopicService>();
+        builder.RegisterType<EfEventTopicDAL>().As<IEventTopicDAL>();
+        #endregion
 
+        #region Event Type
+        builder.RegisterType<EventTypeManager>().As<IEventTypeService>();
+        builder.RegisterType<EfEventTypeDAL>().As<IEventTypeDAL>();
+        #endregion
+
+        #region Validators for entities
         builder.RegisterType<AppUserValidator>().As<IValidator<AppUser>>();
+        builder.RegisterType<EventValidator>().As<IValidator<Event>>();
+        builder.RegisterType<EventTopicValidator>().As<IValidator<EventTopic>>();
+        builder.RegisterType<EventTypeValidator>().As<IValidator<EventType>>();
+        builder.RegisterType<UserActivitiesValidator>().As<IValidator<UserActivities>>();
+        #endregion
+
+
+
         builder.RegisterType<AppUserDtoValidator>().As<IValidator<AppUserDto>>();
 
     }

@@ -2,6 +2,6 @@
 using ActivityTrackingApp.Entities.Concrete;
 
 namespace ActivityTrackingApp.DataAccess.Abstract;
-public interface IEventTopicDal : IEntityRepositoryAsync<EventTopic>
+public interface IEventTopicDAL : IEntityRepositoryAsync<EventTopic>
 {
 }

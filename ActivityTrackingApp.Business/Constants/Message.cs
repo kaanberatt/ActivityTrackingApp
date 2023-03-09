@@ -10,7 +10,8 @@ public static class Messages
     private static string userNotFound = "Email is not available in the system. Please try again.";
     private static string passwordError = "Your password is incorrect. Please try again.";
     private static string succesfulLogin = "Login to the system is successful.";
-    private static string verificationSend = "Please verify your account from the link that sent to your e-mail address.";
+    private static string verificationTrue = "There is data in the system";
+    private static string verificationFalse = "There is no such data in the system";
     private static string again = "You have done this before.";
     private static string draftMessage = "Save was successful.";
     private static string errorMessage = "An unexpected error occurred";
@@ -25,7 +26,8 @@ public static class Messages
     public static string UserNotFound { get { return userNotFound; } set { userNotFound = value; } }
     public static string PasswordError { get { return passwordError; } set { passwordError = value; } }
     public static string SuccesfulLogin { get { return succesfulLogin; } set { succesfulLogin = value; } }
-    public static string VerificationSend { get { return verificationSend; } set { verificationSend = value; } }
+    public static string VerificationTrue { get { return verificationTrue; } set { verificationTrue = value; } }
+    public static string VerificationFalse { get { return verificationFalse; } set { verificationFalse = value; } }
     public static string Again { get { return again; } set { again = value; } }
     public static string DraftMessage { get { return draftMessage; } set { draftMessage = value; } }
     public static string ErrorMessage { get { return errorMessage; } set { errorMessage = value; } }

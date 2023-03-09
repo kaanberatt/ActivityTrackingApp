@@ -1,7 +1,7 @@
 namespace ActivityTrackingApp.Core.Utilities.Result;
 public interface IResult
 {
-	bool Success { get; }
+	bool isSuccess { get; }
 
 	string Message { get; }
 }

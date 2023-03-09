@@ -12,8 +12,8 @@ public class JwtToken
         var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("3KBsVR697nrsqxfvvjlZDw=="));
         var token = new JwtSecurityToken
         (
-            issuer: "https://localhost:7132/",
-            audience: "https://localhost:7132/",
+            issuer: "https://localhost:7044/",
+            audience: "https://localhost:7044/",
             expires: DateTime.Now.AddHours(24),
             claims: authClaims,
             signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)

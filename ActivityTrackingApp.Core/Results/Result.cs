@@ -1,7 +1,7 @@
 namespace ActivityTrackingApp.Core.Utilities.Result;
 public class Result : IResult
 {
-	public bool Success { get; }
+	public bool isSuccess { get; }
 
 	public string Message { get; }
 
@@ -13,6 +13,6 @@ public class Result : IResult
 
 	public Result(bool success)
 	{
-		Success = success;
+		isSuccess = success;
 	}
 }

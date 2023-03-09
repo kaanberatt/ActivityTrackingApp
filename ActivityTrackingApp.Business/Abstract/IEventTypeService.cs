@@ -5,4 +5,6 @@ namespace ActivityTrackingApp.Business.Abstract;
 public interface IEventTypeService
 {
     Task<IDataResult<EventType>> AddAsync(EventType eventType);
+    Task<IResult> DataVerificationAsync(int id);
+
 }

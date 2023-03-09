@@ -5,6 +5,6 @@ using ActivityTrackingApp.Entities.Concrete;
 
 namespace ActivityTrackingApp.DataAccess.Concrete;
 
-public class EfEventTopicDAL : EfEntityRepositoryBaseAsync<EventTopic, ActivityTrackingDbContext>, IEventTopicDal
+public class EfEventTopicDAL : EfEntityRepositoryBaseAsync<EventTopic, ActivityTrackingDbContext>, IEventTopicDAL
 {
 }
