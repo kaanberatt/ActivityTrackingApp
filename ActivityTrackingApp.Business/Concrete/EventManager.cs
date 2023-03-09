@@ -4,8 +4,6 @@ using ActivityTrackingApp.Core.Utilities.Result;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
 using FluentValidation;
-using ActivityTrackingApp.Entities.EntityValidator;
-
 namespace ActivityTrackingApp.Business.Concrete;
 
 public class EventManager : IEventService

@@ -3,37 +3,39 @@ using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Core.Utilities.Result;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
+using FluentValidation;
 
 namespace ActivityTrackingApp.Business.Concrete;
 
 public class EventTopicManager : IEventTopicService
 {
-    private readonly IEventTopicDAL _eventTopicDAL;
+    private IEventTopicDAL _eventTopicDAL;
+    private readonly IValidator<EventTopic> _eventValidator;
 
-    public EventTopicManager(IEventTopicDAL eventTopicDAL)
+    public EventTopicManager(IEventTopicDAL eventTopicDAL, IValidator<EventTopic> eventValidator)
     {
         _eventTopicDAL = eventTopicDAL;
+        _eventValidator = eventValidator;
     }
 
-    public Task<IDataResult<EventTopic>> AddAsync(EventTopic eventTopic)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<IResult> DataVerification(int id)
+    public async Task<IDataResult<EventTopic>> AddAsync(EventTopic eventTopic)
     {
         try
         {
-            var data = await _eventTopicDAL.GetFirstOrDefaultAsync(x => x.Id == id);   
-            if (data != null)
+            eventTopic.createdDate = DateTime.Now;
+            var control = _eventValidator.Validate(eventTopic);
+            if (control.IsValid)
             {
-                return new SuccessResult(Messages.VerificationTrue);
+                await _eventTopicDAL.AddAsync(eventTopic);
+                return new SuccessDataResult<EventTopic>(eventTopic, Messages.AddMessage);
             }
-            return new ErrorResult(Messages.ErrorMessage);
+            return new ErrorDataResult<EventTopic>(eventTopic, Messages.ModelErrorMessage);
+
         }
         catch (Exception ex)
         {
-            return new ErrorResult(ex.Message);
+            return new ErrorDataResult<EventTopic>(eventTopic, Messages.ModelErrorMessage);
+
         }
     }
 }

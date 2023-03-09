@@ -5,4 +5,6 @@ public enum RoleEnums
 {
     [Description("User")]
     User,
+    [Description("Admin")]
+    Admin,
 }

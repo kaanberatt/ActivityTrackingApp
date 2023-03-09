@@ -2,7 +2,6 @@
 using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Entities.Dtos;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityTrackingApp.API.Controllers;
@@ -12,19 +11,17 @@ namespace ActivityTrackingApp.API.Controllers;
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
-    private readonly IEventTopicService _eventTopicService;
     private readonly IEventTypeService _eventTypeService;
     public readonly IMapper _mapper;
 
-    public EventController(IEventService eventService, IMapper mapper, IEventTopicService eventTopicService, IEventTypeService eventTypeService)
+    public EventController(IEventService eventService, IMapper mapper,  IEventTypeService eventTypeService)
     {
         _eventService = eventService;
         _mapper = mapper;
-        _eventTopicService = eventTopicService;
         _eventTypeService = eventTypeService;
     }
     [HttpPost("")]
-    public async Task<IActionResult> AddEventAsync(EventDto eventDto)
+    public async Task<IActionResult> AddEvent(EventDto eventDto)
     {
         try
         {
@@ -39,9 +36,9 @@ public class EventController : ControllerBase
                 var addedevent = await _eventService.AddAsync(_mappedEvent);
                 if (addedevent.isSuccess)
                 {
-                    return Ok(addedevent.Message);
+                    return Ok(addedevent);
                 }
-                return BadRequest(addedevent.Message);
+                return BadRequest(addedevent);
             }
             else
             {
