@@ -61,6 +61,7 @@ public class ActivityTrackingDbContext : DbContext
             Education = "Üniversite",
             City = "Sakarya",
             Age = 30,
+            Gender = "Erkek",
             PhoneNumberConfirmed = true,
             IsActived = true,
             Role = RoleEnums.User.ToString(),

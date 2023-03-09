@@ -3,8 +3,6 @@ using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Core.Utilities.Result;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
-using ActivityTrackingApp.DataAccess.Concrete;
-using ActivityTrackingApp.Entities.EntityValidator;
 using FluentValidation;
 
 namespace ActivityTrackingApp.Business.Concrete;
@@ -24,7 +22,7 @@ public class EventTypeManager : IEventTypeService
         try
         {
             eventType.createdDate = DateTime.Now;
-            var control = _validator.Validate(eventType);
+            var control = _validator.Validate(eventType); // fluent validation
             if (control.IsValid)
             {
                 await _eventTypeDAL.AddAsync(eventType);
@@ -40,7 +38,7 @@ public class EventTypeManager : IEventTypeService
         }
     }
 
-    public async Task<IResult> DataVerificationAsync(int id)
+    public async Task<IResult> DataVerificationAsync(int id) // girilen id'ye ait bir değer olup olmadığını kontrol ediyor.
     {
         try
         {

@@ -24,6 +24,9 @@ public class AppUserValidator : AbstractValidator<AppUser>
         RuleFor(x => x.Age)
             .InclusiveBetween(0, 100).WithMessage("Yaş 0-100 arasında olmalıdır.");
 
+        RuleFor(x => x.Gender).Must(x => x == "Kadın" || x == "Erkek")
+                              .WithMessage("Cinsiyet sadece 'Kadın' veya 'Erkek' olabilir.");
+
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("E-posta boş olamaz.")
             .EmailAddress().WithMessage("Geçersiz e-posta adresi.");

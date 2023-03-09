@@ -3,7 +3,6 @@ using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Entities.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
