@@ -34,7 +34,7 @@ public class EventTopicManager : IEventTopicService
         }
         catch (Exception ex)
         {
-            return new ErrorDataResult<EventTopic>(eventTopic, Messages.ModelErrorMessage);
+            return new ErrorDataResult<EventTopic>(eventTopic, ex.Message);
 
         }
     }

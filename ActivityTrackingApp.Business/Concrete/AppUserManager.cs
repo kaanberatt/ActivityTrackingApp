@@ -58,6 +58,23 @@ public class AppUserManager : IAppUserService
         }
        
     }
+    public async Task<IDataResult<int>> GetUserIdByEmailAsync(string appUserEmail)
+    {
+        try
+        {
+            var row = await _appUserDal.GetFirstOrDefaultAsync(x => x.Email == appUserEmail);
+            if (row != null)
+            {
+                return new SuccessDataResult<int>(row.Id);
+            }
+            return new ErrorDataResult<int>(Messages.NoRecordMessage);
+        }
+        catch (Exception ex)
+        {
+            return new ErrorDataResult<int>(ex.Message);
+        }
+
+    }
 
     public async Task<IDataResult<AppUser>> SignInAsync(string email, string password)
     {

@@ -4,21 +4,40 @@ using ActivityTrackingApp.Core.Utilities.Result;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
 using ActivityTrackingApp.DataAccess.Concrete;
+using ActivityTrackingApp.Entities.EntityValidator;
+using FluentValidation;
 
 namespace ActivityTrackingApp.Business.Concrete;
 
 public class EventTypeManager : IEventTypeService
 {
     private readonly IEventTypeDAL _eventTypeDAL;
-
-    public EventTypeManager(IEventTypeDAL eventTypeDAL)
+    private readonly IValidator<EventType> _validator;
+    public EventTypeManager(IEventTypeDAL eventTypeDAL, IValidator<EventType> validator)
     {
         _eventTypeDAL = eventTypeDAL;
+        _validator = validator;
     }
 
-    public Task<IDataResult<EventType>> AddAsync(EventType eventType)
+    public async Task<IDataResult<EventType>> AddAsync(EventType eventType)
     {
-        throw new NotImplementedException();
+        try
+        {
+            eventType.createdDate = DateTime.Now;
+            var control = _validator.Validate(eventType);
+            if (control.IsValid)
+            {
+                await _eventTypeDAL.AddAsync(eventType);
+                return new SuccessDataResult<EventType>(eventType, Messages.AddMessage);
+            }
+            return new ErrorDataResult<EventType>(eventType, Messages.ModelErrorMessage);
+
+        }
+        catch (Exception ex)
+        {
+            return new ErrorDataResult<EventType>(eventType, ex.Message);
+
+        }
     }
 
     public async Task<IResult> DataVerificationAsync(int id)

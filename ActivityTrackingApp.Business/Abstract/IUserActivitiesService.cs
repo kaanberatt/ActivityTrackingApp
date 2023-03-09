@@ -5,4 +5,6 @@ namespace ActivityTrackingApp.Business.Abstract;
 public interface IUserActivitiesService
 {
     Task<IDataResult<UserActivities>> AddAsync(UserActivities userActivities);
+    Task<IDataResult<UserActivities>> UpdateAsync(UserActivities userActivities);
+    Task<IDataResult<UserActivities>> GetActivityByIdAsync(int activityId);
 }
