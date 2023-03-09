@@ -15,5 +15,8 @@ public class UserActivitiesValidator : AbstractValidator<UserActivities>
 
         RuleFor(x => x.EventId)
             .NotEmpty().WithMessage("Event Id değeri boş olamaz.");
+
+        RuleFor(x => x.EventTopicId)
+            .NotEmpty().WithMessage("Event Topic Id değeri boş olamaz.");
     }
 }

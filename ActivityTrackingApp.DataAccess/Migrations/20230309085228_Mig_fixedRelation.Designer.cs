@@ -4,6 +4,7 @@ using ActivityTrackingApp.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ActivityTrackingApp.DataAccess.Migrations
 {
     [DbContext(typeof(ActivityTrackingDbContext))]
-    partial class ActivityTrackingDbContectModelSnapshot : ModelSnapshot
+    [Migration("20230309085228_Mig_fixedRelation")]
+    partial class Mig_fixedRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

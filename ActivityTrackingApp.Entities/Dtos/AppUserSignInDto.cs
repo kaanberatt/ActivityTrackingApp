@@ -4,10 +4,10 @@ namespace ActivityTrackingApp.Entities.Dtos;
 
 public class AppUserSignInDto
 {
-    [Required(ErrorMessage = "Lütfen e-posta adresinizi boş geçmeyiniz.")]
-    [EmailAddress(ErrorMessage = "Lütfen uygun formatta e-posta giriniz.")]
+    [Required(ErrorMessage = "Please Enter Email")]
+    [EmailAddress(ErrorMessage = "Please enter in email format.")]
     public string Email { get; set; }
-    [Required(ErrorMessage = "Lütfen şifre alanını boş geçmeyiniz.")]
+    [Required(ErrorMessage = "Please Enter Password")]
     public string Password { get; set; }
 
 }

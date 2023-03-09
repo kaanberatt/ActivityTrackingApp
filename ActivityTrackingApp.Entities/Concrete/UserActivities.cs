@@ -8,7 +8,9 @@ public class UserActivities : Entity
     public DateTime FinishDate { get; set; }
     public int AppUserId { get; set; }
     public int EventId { get; set; }
+    public int EventTopicId { get; set; }
     public virtual AppUser AppUser { get; set; }
     public virtual Event Event { get; set; }
+    public virtual EventTopic EventTopic { get; set; }
 
 }
