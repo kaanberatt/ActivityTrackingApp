@@ -2,6 +2,7 @@
 using ActivityTrackingApp.Business.Concrete;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.DataAccess.Concrete;
+using ActivityTrackingApp.DataAccess.Context;
 using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Entities.Dtos;
 using ActivityTrackingApp.Entities.DtosValidator;
@@ -37,6 +38,10 @@ public class AutofacBusinessModule : Module
         #region Event Type
         builder.RegisterType<EventTypeManager>().As<IEventTypeService>();
         builder.RegisterType<EfEventTypeDAL>().As<IEventTypeDAL>();
+        #endregion
+
+        #region Report
+        builder.RegisterType<ReportManager>().As<IReportService>();
         #endregion
 
         #region Validators for entities

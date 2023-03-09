@@ -6,6 +6,7 @@ using FluentValidation;
 using ActivityTrackingApp.Business.Constants;
 using ActivityTrackingApp.DataAccess.Concrete;
 using ActivityTrackingApp.Entities.EntityValidator;
+using System.Runtime.CompilerServices;
 
 namespace ActivityTrackingApp.Business.Concrete;
 
@@ -54,6 +55,12 @@ public class UserActivitiesManager : IUserActivitiesService
         {
             return new ErrorDataResult<UserActivities>(ex.Message);
         }
+    }
+
+    public async Task<IDataResult<List<UserActivities>>> GetListAsync()
+    {
+        var result = (await _userActivitiesDAL.GetListAsync(null,null , x => x.EventTopic , y => y.Event, z => z.AppUser)).ToList();
+        return new SuccessDataResult<List<UserActivities>>(result);
     }
 
     public async Task<IDataResult<UserActivities>> UpdateAsync(UserActivities userActivities)

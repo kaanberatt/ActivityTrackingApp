@@ -1,4 +1,5 @@
 ﻿using ActivityTrackingApp.Business.Abstract;
+using ActivityTrackingApp.Business.Constants;
 using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Entities.Dtos;
 using AutoMapper;
@@ -63,6 +64,14 @@ namespace ActivityTrackingApp.API.Controllers
                     return Ok("Please enter the activityId");
                 }
                 var activity = _userActivitiesService.GetActivityByIdAsync(activityId);
+                if (activity.Result.Data == null )
+                {
+                    return Ok(Messages.NoRecordMessage);
+                }
+                else if (activity.Result.Data.FinishDate.Day != 1)
+                {
+                    return Ok("Bu Aktivite zaten tamamlanmıştır");
+                }
                 activity.Result.Data.FinishDate = DateTime.Now;
                 var result = await _userActivitiesService.UpdateAsync(activity.Result.Data);
                 if (result.isSuccess)

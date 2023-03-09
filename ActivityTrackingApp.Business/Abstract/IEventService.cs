@@ -5,4 +5,5 @@ namespace ActivityTrackingApp.Business.Abstract;
 public interface IEventService
 {
     Task<IDataResult<Event>> AddAsync(Event model);
+    Task<IDataResult<Event>> GetByIdAsync(int id);
 }

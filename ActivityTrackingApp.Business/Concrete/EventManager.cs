@@ -4,6 +4,8 @@ using ActivityTrackingApp.Core.Utilities.Result;
 using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
 using FluentValidation;
+using ActivityTrackingApp.DataAccess.Concrete;
+
 namespace ActivityTrackingApp.Business.Concrete;
 
 public class EventManager : IEventService
@@ -34,5 +36,22 @@ public class EventManager : IEventService
             return new ErrorDataResult<Event>(model,ex.Message);
         }
        
+    }
+
+    public async Task<IDataResult<Event>> GetByIdAsync(int id)
+    {
+        try
+        {
+            var row = await _eventDAL.GetFirstOrDefaultAsync(x => x.Id == id);
+            if (row != null)
+            {
+                return new SuccessDataResult<Event>(row);
+            }
+            return new ErrorDataResult<Event>(row);
+        }
+        catch (Exception ex)
+        {
+            return new ErrorDataResult<Event>(ex.Message);
+        }
     }
 }

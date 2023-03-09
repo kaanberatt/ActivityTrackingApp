@@ -95,4 +95,9 @@ public class AppUserManager : IAppUserService
         }
         
     }
+    public async Task<IDataResult<List<AppUser>>> GetListAsync()
+    {
+        var result = (await _appUserDal.GetListAsync(x => x.Role == RoleEnums.User.ToString())).ToList();
+        return new SuccessDataResult<List<AppUser>>(result);
+    }
 }
