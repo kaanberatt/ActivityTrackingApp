@@ -99,7 +99,7 @@ public class UserAccountController : ControllerBase
                 }
             }
             var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.ErrorMessage));
-            return BadRequest(errors);
+            return Ok(errors);
         }
         catch (Exception ex)
         {

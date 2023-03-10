@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityTrackingApp.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class EventTypeController : ControllerBase
     {
         private readonly IEventTypeService _eventTypeService;
@@ -36,12 +36,12 @@ namespace ActivityTrackingApp.API.Controllers
                 else
                 {
                     var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.ErrorMessage));
-                    return BadRequest(errors);
+                    return Ok(errors);
                 }
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Ok(ex.Message);
             }
         }
     }

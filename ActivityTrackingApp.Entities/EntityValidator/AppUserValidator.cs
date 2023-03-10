@@ -1,4 +1,4 @@
-﻿using ActivityTrackingApp.Entities.Concrete;
+﻿    using ActivityTrackingApp.Entities.Concrete;
 using FluentValidation;
 
 namespace ActivityTrackingApp.Entities.EntityValidator;

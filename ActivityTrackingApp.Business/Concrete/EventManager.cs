@@ -5,6 +5,7 @@ using ActivityTrackingApp.DataAccess.Abstract;
 using ActivityTrackingApp.Business.Constants;
 using FluentValidation;
 using ActivityTrackingApp.DataAccess.Concrete;
+using System.Collections.Generic;
 
 namespace ActivityTrackingApp.Business.Concrete;
 
@@ -53,5 +54,20 @@ public class EventManager : IEventService
         {
             return new ErrorDataResult<Event>(ex.Message);
         }
+    }
+
+    public async Task<IDataResult<List<Event>>> GetListAsync()
+    {
+        try
+        {
+            var list = (await _eventDAL.GetListAsync(null,null,x=>x.EventType)).ToList();
+            return new SuccessDataResult<List<Event>>(list);
+        }
+        catch (Exception ex)
+        {
+            return new SuccessDataResult<List<Event>>(new List<Event>() , ex.Message);
+
+        }
+
     }
 }

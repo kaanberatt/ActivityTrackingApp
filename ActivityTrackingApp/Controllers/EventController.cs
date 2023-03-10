@@ -3,11 +3,13 @@ using ActivityTrackingApp.Entities.Concrete;
 using ActivityTrackingApp.Entities.Dtos;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace ActivityTrackingApp.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
+
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
@@ -43,12 +45,18 @@ public class EventController : ControllerBase
             else
             {
                 var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.ErrorMessage));
-                return BadRequest(errors);
+                return Ok(errors);
             }
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return Ok(ex.Message);
         }
+    }
+    [HttpGet]
+    public async Task<IActionResult> GetEventList()
+    {
+        var eventList = await _eventService.GetListAsync();
+        return Ok(eventList);
     }
 }
